@@ -159,15 +159,12 @@ var file_chat_proto_rawDesc = []byte{
 	0x09, 0x52, 0x05, 0x70, 0x61, 0x72, 0x74, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x6e, 0x75, 0x6d, 0x50,
 	0x61, 0x72, 0x74, 0x65, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x09, 0x6e, 0x75, 0x6d,
 	0x50, 0x61, 0x72, 0x74, 0x65, 0x73, 0x12, 0x16, 0x0a, 0x06, 0x62, 0x75, 0x66, 0x66, 0x65, 0x72,
-	0x18, 0x04, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06, 0x62, 0x75, 0x66, 0x66, 0x65, 0x72, 0x32, 0x6b,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06, 0x62, 0x75, 0x66, 0x66, 0x65, 0x72, 0x32, 0x39,
 	0x0a, 0x0b, 0x43, 0x68, 0x61, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x2a, 0x0a,
 	0x0a, 0x53, 0x75, 0x62, 0x69, 0x72, 0x43, 0x68, 0x75, 0x6e, 0x6b, 0x12, 0x0b, 0x2e, 0x63, 0x68,
 	0x61, 0x74, 0x2e, 0x43, 0x68, 0x75, 0x6e, 0x6b, 0x1a, 0x0d, 0x2e, 0x63, 0x68, 0x61, 0x74, 0x2e,
-	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x00, 0x12, 0x30, 0x0a, 0x0e, 0x44, 0x65, 0x73,
-	0x63, 0x61, 0x72, 0x67, 0x61, 0x72, 0x43, 0x68, 0x75, 0x6e, 0x6b, 0x12, 0x0d, 0x2e, 0x63, 0x68,
-	0x61, 0x74, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x0d, 0x2e, 0x63, 0x68, 0x61,
-	0x74, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x00, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x00, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -189,11 +186,9 @@ var file_chat_proto_goTypes = []interface{}{
 }
 var file_chat_proto_depIdxs = []int32{
 	1, // 0: chat.ChatService.SubirChunk:input_type -> chat.Chunk
-	0, // 1: chat.ChatService.DescargarChunk:input_type -> chat.Message
-	0, // 2: chat.ChatService.SubirChunk:output_type -> chat.Message
-	0, // 3: chat.ChatService.DescargarChunk:output_type -> chat.Message
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	0, // 1: chat.ChatService.SubirChunk:output_type -> chat.Message
+	1, // [1:2] is the sub-list for method output_type
+	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -263,7 +258,6 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ChatServiceClient interface {
 	SubirChunk(ctx context.Context, in *Chunk, opts ...grpc.CallOption) (*Message, error)
-	DescargarChunk(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
 }
 
 type chatServiceClient struct {
@@ -283,19 +277,9 @@ func (c *chatServiceClient) SubirChunk(ctx context.Context, in *Chunk, opts ...g
 	return out, nil
 }
 
-func (c *chatServiceClient) DescargarChunk(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error) {
-	out := new(Message)
-	err := c.cc.Invoke(ctx, "/chat.ChatService/DescargarChunk", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ChatServiceServer is the server API for ChatService service.
 type ChatServiceServer interface {
 	SubirChunk(context.Context, *Chunk) (*Message, error)
-	DescargarChunk(context.Context, *Message) (*Message, error)
 }
 
 // UnimplementedChatServiceServer can be embedded to have forward compatible implementations.
@@ -304,9 +288,6 @@ type UnimplementedChatServiceServer struct {
 
 func (*UnimplementedChatServiceServer) SubirChunk(context.Context, *Chunk) (*Message, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubirChunk not implemented")
-}
-func (*UnimplementedChatServiceServer) DescargarChunk(context.Context, *Message) (*Message, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DescargarChunk not implemented")
 }
 
 func RegisterChatServiceServer(s *grpc.Server, srv ChatServiceServer) {
@@ -331,24 +312,6 @@ func _ChatService_SubirChunk_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ChatService_DescargarChunk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Message)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ChatServiceServer).DescargarChunk(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/chat.ChatService/DescargarChunk",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ChatServiceServer).DescargarChunk(ctx, req.(*Message))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 var _ChatService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "chat.ChatService",
 	HandlerType: (*ChatServiceServer)(nil),
@@ -356,10 +319,6 @@ var _ChatService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SubirChunk",
 			Handler:    _ChatService_SubirChunk_Handler,
-		},
-		{
-			MethodName: "DescargarChunk",
-			Handler:    _ChatService_DescargarChunk_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -15,5 +15,4 @@ message Chunk {
 
 service ChatService{
     rpc SubirChunk(Chunk) returns (Message){};
-    rpc DescargarChunk(Message) returns (Message){};
 }
