@@ -34,7 +34,7 @@ func con() {
 func main() {
 
 	var conn *grpc.ClientConn
-	conn, err := grpc.Dial("dist140:9000", grpc.WithInsecure())
+	conn, err := grpc.Dial(":9000", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Error: %s", err)
 	}
@@ -83,7 +83,7 @@ func main() {
 		var response *chat.Message
 		
 		response, _ = c.SubirChunk(context.Background(), &message)
-		log.Printf("Holi 1 %s", response.Body)
+		log.Printf("Parte %s", response.Body)
 	}
 
 	for {
