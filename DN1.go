@@ -2,6 +2,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net"
 
@@ -10,9 +11,9 @@ import (
 )
 
 func con() {
-	lis, err := net.Listen("tcp", ":9001")
+	lis, err := net.Listen("tcp", ":9000")
 	if err != nil {
-		log.Fatalf("Failed to listen: %v", err)
+		log.Fatalf("Failed to listen on port 9000: %v", err)
 	}
 
 	s := chat.Server{}
@@ -26,7 +27,7 @@ func con() {
 
 func main() {	
 	go con()
-
+	fmt.Print("Escuchando")
 	for {
 
 	}
