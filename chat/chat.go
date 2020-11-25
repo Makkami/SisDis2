@@ -3,15 +3,22 @@ package chat
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 
 	"golang.org/x/net/context"
-	grpc "google.golang.org/grpc"
 )
 
+type Server struct {
+	id1 int
+	id2 int
+	id3 int
+	w1  int
+	w2  int
+	w3  int
+}
 
-func SubirChunk(ctx context.Context, message *Chunk) (*Message, error) {
+
+func (s *Server) SubirChunk(ctx context.Context, message *Chunk) (*Message, error) {
 	// write to disk
 	fileName := message.Nombre + "_" + message.Parte
 	_, err := os.Create(fileName)
