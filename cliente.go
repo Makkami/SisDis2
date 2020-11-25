@@ -76,7 +76,6 @@ func main() {
 		message := chat.Chunk{
 			Nombre: "Mujercitas",
 			Parte: strconv.FormatUint(i, 10),
-			Elegido: 1,
 			NumPartes: totalPartsNum,
 			Buffer: partBuffer,
 		}

@@ -11,7 +11,7 @@ import (
 )
 
 
-func (s *Server) SubirChunk(ctx context.Context, message *Chunk) (*Message, error) {
+func SubirChunk(ctx context.Context, message *Chunk) (*Message, error) {
 	// write to disk
 	fileName := message.Nombre + "_" + message.Parte
 	_, err := os.Create(fileName)
