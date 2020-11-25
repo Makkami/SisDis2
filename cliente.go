@@ -83,7 +83,7 @@ func main() {
 		var response *chat.Message
 		
 		response, _ = c.SubirChunk(context.Background(), &message)
-		log.Printf("Parte %s", response.Body)
+		log.Printf("Holi 1 %s", response.Body)
 	}
 
 	for {
