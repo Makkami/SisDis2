@@ -10,7 +10,6 @@ message Chunk {
     string parte = 2;
     uint64 numPartes =3;
     bytes buffer = 4;
-    
 }
 
 service ChatService{
