@@ -39,8 +39,9 @@ func main() {
 		log.Fatalf("Error: %s", err)
 	}
 
-	defer conn.Close()
 	c := chat.NewChatServiceClient(conn)
+	defer conn.Close()
+	
 
 
 	fileToBeChunked := "./Mujercitas-Alcott_Louisa_May.pdf"
@@ -83,6 +84,9 @@ func main() {
 		var response *chat.Message
 		
 		response, _ = c.SubirChunk(context.Background(), &message)
-		log.Printf("Aca %s", response.Body)
+		fmt.Printf("Hola que tal, %s", response.Body)
+	}
+	for{
+		
 	}
 }

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-
 	"golang.org/x/net/context"
 )
 
