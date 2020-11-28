@@ -9,9 +9,9 @@ import (
 )
 
 func crearServer() {
-	lis, err := net.Listen("tcp", ":9001")
+	lis, err := net.Listen("tcp", ":9003")
 	if err != nil {
-		log.Fatalf("Failed to listen on port 9001: %v\n", err)
+		log.Fatalf("Failed to listen on port 9003: %v\n", err)
 	}
 
 	s := chat.Server{}
@@ -27,7 +27,7 @@ func main() {
 	// Crear server
 	go crearServer()
 
-	fmt.Print("Escuchando en DN1 puerto 9001\n")
+	fmt.Print("Escuchando en DN3 puerto 9003\n")
 	for {
 
 	}
